@@ -1,26 +1,26 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-</template>
+<script setup>
+import Header from "./components/share/Header.vue";
+import Footer from "./components/share/Footer.vue";
+import MainPage from './components/MainPage.vue';
+import SearchPage from "./components/SearchPage.vue";
+import { ref } from "vue";
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+let onSearch = ref(false);
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+
 </script>
 
+<template>
+  
+  <div class="container-fulid">
+    <Header />
+    <component :is="onSearch ? SearchPage : MainPage"
+    @search-menu-click="onSearch = !onSearch"></component>
+    <Footer v-if="!onSearch" />
+  </div>
+ 
+</template>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
